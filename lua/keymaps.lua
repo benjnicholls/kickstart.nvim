@@ -55,3 +55,12 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   command = [[%s/\s\+$//e]],
 })
+
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePre' }, {
+  pattern = '*',
+  callback = function()
+    if vim.bo.fileformat ~= 'unix' then
+      vim.bo.fileformat = 'unix'
+    end
+  end,
+})
