@@ -55,3 +55,22 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   command = [[%s/\s\+$//e]],
 })
+
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePre' }, {
+  pattern = '*',
+  callback = function()
+    if vim.bo.fileformat ~= 'unix' then
+      vim.bo.fileformat = 'unix'
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sql',
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.expandtab = true
+  end,
+})
