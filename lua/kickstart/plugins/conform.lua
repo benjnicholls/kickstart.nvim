@@ -32,6 +32,7 @@ return { -- Autoformat
       lua = { 'stylua' },
       python = { 'ruff' },
       sql = { 'sqlfluff' },
+      javascript = { 'biome' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
